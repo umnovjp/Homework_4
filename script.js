@@ -58,6 +58,7 @@ console.log(numberOfAnswers + ", " + numberOfQuestions)
      for (j = 0; j < numberOfAnswers; j++)
      console.log(i + '.' + myQuestions[i,j])
      var output = myQuestions[i,j];
+     console.log(output)
      answers.push(output);
      // var temp = String(myQuestions[i,j])
    //  console.log(temp)
