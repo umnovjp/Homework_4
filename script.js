@@ -23,7 +23,7 @@ function setTime() {
 
 setTime();
 
-arrayOfQuestions = [ { question: "The condition in an if / else is enclosed within ___.", possibleAnswers: 
+var myQuestions = [ { question: "The condition in an if / else is enclosed within ___.", possibleAnswers: 
 {1: "Button1", 2: "Button2", 3: "Button3", 4: "Button4"}, correctAnswer: "Button2"}, //end of question 1
 { question: "String values must be enclosed within ___.", possibleAnswers: 
 {1: "Button5", 2: "Button6", 3: "Button7", 4: "Button8"}, correctAnswer: "Button7"}, //end of question 2
@@ -35,10 +35,11 @@ arrayOfQuestions = [ { question: "The condition in an if / else is enclosed with
 {1: "Button17", 2: "Button18", 3: "Button19", 4: "Button20"}, correctAnswer: "Button19"}, //end of question 5
 ]
 
-var myQuestions = arrayOfQuestions;
+//var myQuestions  = myQuestions;
+// arrayOfQuestions.slice(1,1)
 
-var numberOfQuestions = arrayOfQuestions[0,1].length; // does not work
-var numberOfAnswers = arrayOfQuestions.length;
+var numberOfQuestions = 4; // does not work
+ var numberOfAnswers = myQuestions.length;
 console.log(numberOfAnswers + ", " + numberOfQuestions)
 
 //var correctAnswer = document.querySelector(".button-correct");
@@ -49,13 +50,20 @@ console.log(numberOfAnswers + ", " + numberOfQuestions)
 // function selectAnswer (event){
  //   console.log(event.currentTarget);
  
- for (i = 0; i < numberOfQuestions; i++) // function createQuestion (question, possibleAnswers, correctAnswer, message) // 
- {    var answers;
-     console.log(myQuestions[i]);
-     console.log(arrayOfQuestions[i]);
-     for (j = 0; numberOfAnswers; i++)
+ for (i = 0; i < 5; i++) // function createQuestion (question, possibleAnswers, correctAnswer, message) // 
+ {    var answers = [];
+      var output
+    console.log(myQuestions[i]);
+    //  console.log(arrayOfQuestions[i]);
+     for (j = 0; j < numberOfAnswers; j++)
      console.log(i + '.' + myQuestions[i,j])
-     answers.push(myQuestions[i,j]) 
+     var output = myQuestions[i,j];
+     answers.push(output);
+     // var temp = String(myQuestions[i,j])
+   //  console.log(temp)
+  //  answers.push(temp) 
+   console.log(answers)
+  //  output.push()
 }
 
 // submitAnswer.addEventListener("click",selectAnswer);
