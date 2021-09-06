@@ -52,25 +52,29 @@ var numberOfAnswers = possibleAnswers1[0].length;
 
 function callQuestion (currentQuestion){
   document.getElementById("headline").textContent = questions1[currentQuestion];
-  document.getElementById("button1").textContent = possibleAnswers1[currentQuestion][0];
-  document.getElementById("button2").textContent = possibleAnswers1[currentQuestion][1];
-  document.getElementById("button3").textContent = possibleAnswers1[currentQuestion][2];
-  document.getElementById("button4").textContent = possibleAnswers1[currentQuestion][3];
+  document.getElementsByClassName("button1").textContent = possibleAnswers1[currentQuestion][0];
+  document.getElementsByClassName("button2").textContent = possibleAnswers1[currentQuestion][1];
+  document.getElementsByClassName("button3").textContent = possibleAnswers1[currentQuestion][2];
+  document.getElementsByClassName("button4").textContent = possibleAnswers1[currentQuestion][3];
+
 } //end function callQuestion
 callQuestion(currentQuestion)
 
-var firstButton = document.querySelector("#button1");
-var secondButton = document.querySelector("#button2");
-var thirdButton = document.querySelector("#button3");
-var forthButton = document.querySelector("#button4");
+var firstButton = document.querySelector(".button1");
+var secondButton = document.querySelector(".button2");
+var thirdButton = document.querySelector(".button3");
+var forthButton = document.querySelector(".button4");
 // I am sure there is way not to define four different functions here. But it seems faster for me
 
-firstButton.addEventListener("click",clickOne);
-secondButton.addEventListener("click",clickTwo);
-thirdButton.addEventListener("click",clickThree);
-forthButton.addEventListener("click",clickFour);
+firstButton.addEventListener("click",enterAnswer);
+// secondButton.addEventListener("click",enterAnswer);
+// thirdButton.addEventListener("click",clickThree);
+// forthButton.addEventListener("click",clickFour);
 
 console.log(currentQuestion + " " + correctAnswers1);
+
+function enterAnswer (event) {console.log(event.currentTarget);}
+enterAnswer()
 
 function clickOne() {value1 = 0;
   if (correctAnswers1[currentQuestion] === value1) {
@@ -119,7 +123,6 @@ function clickFour() {value1 = 3;
   if (currentQuestion === 5) {currentQuestion = 4};
   // console.log(currentQuestion + " " + correctAnswers1);
 }; // end function ClickFour
-
 
 if  (correctAnswers1[currentQuestion] === 0){clickOne()}
 else if (correctAnswers1[currentQuestion] === 1){clickTwo()}
