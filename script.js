@@ -67,13 +67,13 @@ var forthButton = document.querySelector(".button4");
 // I am sure there is way not to define four different functions here. But it seems faster for me
 
 firstButton.addEventListener("click",enterAnswer);
-// secondButton.addEventListener("click",enterAnswer);
-// thirdButton.addEventListener("click",clickThree);
-// forthButton.addEventListener("click",clickFour);
+secondButton.addEventListener("click",enterAnswer);
+thirdButton.addEventListener("click",clickThree);
+forthButton.addEventListener("click",clickFour);
 
 console.log(currentQuestion + " " + correctAnswers1);
 
-function enterAnswer (event) {console.log(event.currentTarget);}
+function enterAnswer (event) {console.log(event.currentTarget.value);}
 enterAnswer()
 
 function clickOne() {value1 = 0;
