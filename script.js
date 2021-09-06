@@ -3,7 +3,7 @@ var timeEl = document.querySelector(".half");
 // Selects element by id
 var mainEl = document.getElementById(".half");
 
-var secondsLeft = 30;
+var secondsLeft = 60;
 
 function setTime() {
   // Sets interval in variable
@@ -42,55 +42,74 @@ setTime();
 questions1 = ["The condition in an if / else is enclosed within ___.", "String values must be enclosed within ___.", 
 "Arrays in JavaScript can be used to store", "A very useful tool used for development and debugging", 
 "Commonly used data types do not include:"]
-possibleAnswers1 = [["Button1", "Button2", "Button3", "Button4"], ["1. Commas", "2. Curly Brackets", "3. Quotes", "4. Parenthesis"], 
-["1. Numbers and strings", "2. Other arrays", "3. Booleans", "4. All of the above"], ["Button13", "Button14", "Button15", "Button16"], 
-["Button17", "Button18", "Button19", "Button20"]]
-correctAnswres1 = ["Button3", "Button6", "Button 9", "Button15", "Button17"]
-
-//var myQuestions  = myQuestions;
-// arrayOfQuestions.slice(1,1)
+possibleAnswers1 = [["1. Quotes", "2. Curly Brackets", "3. Parentheses", "4. Square Brackets"], ["1. Commas", "2. Curly Brackets", "3. Quotes", "4. Parenthesis"], 
+["1. Numbers and strings", "2. Other arrays", "3. Booleans", "4. All of the above"], ["1. JavaScript", "2. Bash", "3. For loop", "4. Console.log"], 
+["1. Strings", "2. Booleans", "3. Alerts", "4. Numbers"]]
+correctAnswers1 = [2, 3, 3, 3, 2]
 
 var numberOfQuestions = questions1.length;
- var numberOfAnswers = 4; 
- console.log(numberOfAnswers + ", " + numberOfQuestions)
+var numberOfAnswers = possibleAnswers1[0].length; 
+ console.log(numberOfAnswers + ", " + numberOfQuestions + ", " + correctAnswers1)
 
-//var correctAnswer = document.querySelector(".button-correct");
-//var incorrectAnswer = document.querySelector(".button-incorrect");
-// correctAnswer.addEventListener("click", function() {document.getElementById("answer").innerHTML = "Correct!"})
-// incorrectAnswer.addEventListener("click", function() {document.getElementById("answer").innerHTML = "Wrong!"})
-// document.getElementsById("submit").submit();
-// function selectAnswer (event){
- //   console.log(event.currentTarget);
- 
- for (i = 0; i < 5; i++) // function createQuestion (question, possibleAnswers, correctAnswer, message) // 
- {   //  var answers = [];
-      var input = questions1[i];
-    console.log(input);
-    screenText = [];
-    screenText.push(input);
-    document.getElementById("headline").textContent = input;
-    //  console.log(arrayOfQuestions[i]);
-     for (j = 0; j < numberOfAnswers; j++) {
-      console.log('i= ' + i + '. j= ' + j + ' ' + possibleAnswers1[i][j]); 
-      var currentButton = possibleAnswers1[i][j];
-      buttonText = [];
-      buttonText.push(currentButton);
-      document.getElementById("submit").textContent = buttonText;
-      console.log(buttonText);   };
-     //
-     // answers.push(output);
-     // var temp = String(myQuestions[i,j])
-   //  console.log(temp)
-  //  answers.push(temp) 
-   // console.log(answers)
-  //  output.push()
-};
+for (i = 0; i < 5; i++) {
+var currentQuestion = i;
+function callQuestion (currentQuestion){
+  document.getElementById("headline").textContent = questions1[currentQuestion];
+  document.getElementById("button1").textContent = possibleAnswers1[currentQuestion][0];
+  document.getElementById("button2").textContent = possibleAnswers1[currentQuestion][1];
+  document.getElementById("button3").textContent = possibleAnswers1[currentQuestion][2];
+  document.getElementById("button4").textContent = possibleAnswers1[currentQuestion][3];
+} //end function callQuestion
 
-// submitAnswer.addEventListener("click",selectAnswer);
-var submitEl = document.querySelector("#submit");
-var nameInput = document.querySelector("#name");
-var emailInput = document.querySelector("#email");
-var submissionResponseEl = document.querySelector("#response");
+callQuestion(currentQuestion)
+var firstButton = document.querySelector("#button1");
+var secondButton = document.querySelector("#button2");
+var thirdButton = document.querySelector("#button3");
+var forthButton = document.querySelector("#button4");
+// I am sure there is way not to define four different functions here. But it seems faster for me
+
+firstButton.addEventListener("click",clickOne());
+secondButton.addEventListener("click",clickTwo());
+thirdButton.addEventListener("click",clickThree());
+forthButton.addEventListener("click",clickFour());
+
+function clickOne() {value1 = 0;
+  if (correctAnswers1[i] === value1) {
+  document.getElementById("answer").textContent = "Correct!"}
+  else {document.getElementById("answer").textContent = "Wrong!"
+secondsLeft = secondsLeft - 15}
+}; // end function ClickOne
+
+function clickTwo() {value1 = 1;
+  if (correctAnswers1[i] === value1) {
+  document.getElementById("answer").textContent = "Correct!"}
+  else {document.getElementById("answer").textContent = "Wrong!"
+  secondsLeft = secondsLeft - 15}
+}; // end function ClickTwo
+
+function clickThree() {value1 = 2;
+  if (correctAnswers1[i] === value1) {
+  document.getElementById("answer").textContent = "Correct!"}
+  else {document.getElementById("answer").textContent = "Wrong!"
+  secondsLeft = secondsLeft - 15}
+}; // end function ClickThree
+
+function clickFour() {value1 = 3;
+  if (correctAnswers1[i] === value1) {
+//  console.log(correctAnswers1 + " x " + " y ");
+  document.getElementById("answer").textContent = "Correct!"}
+  else {document.getElementById("answer").textContent = "Wrong!"
+  secondsLeft = secondsLeft - 15}
+}; // end function ClickFour
+
+console.log(currentQuestion + " " + correctAnswers1);
+
+if  (correctAnswers1[i] === 0){clickOne()}
+else if (correctAnswers1[i] === 1){clickTwo()}
+else if (correctAnswers1[i] === 2){clickThree()}
+else if (correctAnswers1[i] === 3){clickFour()}
+else {document.getElementById("answer").textContent = "Something went rong!"}
+}; // end for loop
 
 // Action to be performed on click store in named function
 function showResponse(event) {
@@ -102,4 +121,4 @@ function showResponse(event) {
 }
   
 // Add listener to submit element
-submitEl.addEventListener("click", showResponse);
+// submitEl.addEventListener("click", showResponse);
