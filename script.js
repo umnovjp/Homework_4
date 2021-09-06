@@ -73,7 +73,7 @@ forthButton.addEventListener("click",clickFour);
 
 console.log(currentQuestion + " " + correctAnswers1);
 
-function enterAnswer (event) {console.log(event.currentTarget.value);}
+function enterAnswer(event) {console.log(event.currentTarget);}
 enterAnswer()
 
 function clickOne() {value1 = 0;
