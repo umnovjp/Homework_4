@@ -1,6 +1,4 @@
 var timeEl = document.querySelector(".half");
-// var sendMesssage =
-// Selects element by id
 var mainEl = document.getElementById(".half");
 
 var secondsLeft = 60;
@@ -50,9 +48,8 @@ correctAnswers1 = [2, 3, 3, 3, 2]
 var numberOfQuestions = questions1.length;
 var numberOfAnswers = possibleAnswers1[0].length; 
  console.log(numberOfAnswers + ", " + numberOfQuestions + ", " + correctAnswers1)
+ var currentQuestion = 0;
 
-for (i = 0; i < 5; i++) {
-var currentQuestion = i;
 function callQuestion (currentQuestion){
   document.getElementById("headline").textContent = questions1[currentQuestion];
   document.getElementById("button1").textContent = possibleAnswers1[currentQuestion][0];
@@ -60,56 +57,84 @@ function callQuestion (currentQuestion){
   document.getElementById("button3").textContent = possibleAnswers1[currentQuestion][2];
   document.getElementById("button4").textContent = possibleAnswers1[currentQuestion][3];
 } //end function callQuestion
-
 callQuestion(currentQuestion)
+
 var firstButton = document.querySelector("#button1");
 var secondButton = document.querySelector("#button2");
 var thirdButton = document.querySelector("#button3");
 var forthButton = document.querySelector("#button4");
 // I am sure there is way not to define four different functions here. But it seems faster for me
 
-firstButton.addEventListener("click",clickOne());
-secondButton.addEventListener("click",clickTwo());
-thirdButton.addEventListener("click",clickThree());
-forthButton.addEventListener("click",clickFour());
-
-function clickOne() {value1 = 0;
-  if (correctAnswers1[i] === value1) {
-  document.getElementById("answer").textContent = "Correct!"}
-  else {document.getElementById("answer").textContent = "Wrong!"
-secondsLeft = secondsLeft - 15}
-}; // end function ClickOne
-
-function clickTwo() {value1 = 1;
-  if (correctAnswers1[i] === value1) {
-  document.getElementById("answer").textContent = "Correct!"}
-  else {document.getElementById("answer").textContent = "Wrong!"
-  secondsLeft = secondsLeft - 15}
-}; // end function ClickTwo
-
-function clickThree() {value1 = 2;
-  if (correctAnswers1[i] === value1) {
-  document.getElementById("answer").textContent = "Correct!"}
-  else {document.getElementById("answer").textContent = "Wrong!"
-  secondsLeft = secondsLeft - 15}
-}; // end function ClickThree
-
-function clickFour() {value1 = 3;
-  if (correctAnswers1[i] === value1) {
-//  console.log(correctAnswers1 + " x " + " y ");
-  document.getElementById("answer").textContent = "Correct!"}
-  else {document.getElementById("answer").textContent = "Wrong!"
-  secondsLeft = secondsLeft - 15}
-}; // end function ClickFour
+firstButton.addEventListener("click",clickOne);
+secondButton.addEventListener("click",clickTwo);
+thirdButton.addEventListener("click",clickThree);
+forthButton.addEventListener("click",clickFour);
 
 console.log(currentQuestion + " " + correctAnswers1);
 
-if  (correctAnswers1[i] === 0){clickOne()}
-else if (correctAnswers1[i] === 1){clickTwo()}
-else if (correctAnswers1[i] === 2){clickThree()}
-else if (correctAnswers1[i] === 3){clickFour()}
+function clickOne() {value1 = 0;
+  if (correctAnswers1[currentQuestion] === value1) {
+  document.getElementById("answer").textContent = "Correct!"}
+  else {document.getElementById("answer").textContent = "Wrong!"
+secondsLeft = secondsLeft - 5}
+console.log(currentQuestion + " " + " " + correctAnswers1[currentQuestion] + " " + correctAnswers1 );
+callQuestion(currentQuestion)
+currentQuestion++;
+if (currentQuestion === 5) {currentQuestion = 4};
+// console.log(currentQuestion + " " + correctAnswers1);
+}; // end function ClickOne
+
+function clickTwo() {value1 = 1;
+  if (correctAnswers1[currentQuestion] === value1) {
+  document.getElementById("answer").textContent = "Correct!"}
+  else {document.getElementById("answer").textContent = "Wrong!"
+  secondsLeft = secondsLeft - 5}
+  console.log(currentQuestion + " " + " " + correctAnswers1[currentQuestion] + " " + correctAnswers1 );
+   callQuestion(currentQuestion)
+   currentQuestion++;
+   if (currentQuestion === 5) {currentQuestion = 4};
+  //  console.log(currentQuestion + " " + correctAnswers1);
+}; // end function ClickTwo
+
+function clickThree() {value1 = 2;
+  if (correctAnswers1[currentQuestion] === value1) {
+  document.getElementById("answer").textContent = "Correct!"}
+  else {document.getElementById("answer").textContent = "Wrong!"
+  secondsLeft = secondsLeft - 5}
+  console.log(currentQuestion + " " + " " + correctAnswers1[currentQuestion] + " " + correctAnswers1 );
+  callQuestion(currentQuestion)
+  currentQuestion++;
+  if (currentQuestion === 5) {currentQuestion = 4};
+}; // end function ClickThree
+
+function clickFour() {value1 = 3;
+  if (correctAnswers1[currentQuestion] === value1) {
+//  console.log(correctAnswers1 + " x " + " y ");
+  document.getElementById("answer").textContent = "Correct!"}
+  else {document.getElementById("answer").textContent = "Wrong!"
+  secondsLeft = secondsLeft - 5}
+  console.log(currentQuestion + " " + " " + correctAnswers1[currentQuestion] + " " + correctAnswers1 );
+  callQuestion(currentQuestion);
+  currentQuestion++;
+  if (currentQuestion === 5) {currentQuestion = 4};
+  // console.log(currentQuestion + " " + correctAnswers1);
+}; // end function ClickFour
+
+
+if  (correctAnswers1[currentQuestion] === 0){clickOne()}
+else if (correctAnswers1[currentQuestion] === 1){clickTwo()}
+else if (correctAnswers1[currentQuestion] === 2){clickThree()}
+else if (correctAnswers1[currentQuestion] === 3){clickFour()}
 else {document.getElementById("answer").textContent = "Something went rong!"}
-}; // end for loop
+
+var submitInitialsButton = document.querySelector("#initialsButton");
+// submitInitialsButton.addEventListener("click", function() {allDone();});
+
+function allDone (){document.getElementById("headline").textContent = "All done!";
+document.getElementById("list1").textContent = "Your final score is"
+document.getElementById("list2").textContent = "<button>Submit</button>"
+}
+// allDone()
 
 // Action to be performed on click store in named function
 function showResponse(event) {
