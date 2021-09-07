@@ -51,14 +51,29 @@ var numberOfAnswers = possibleAnswers1[0].length;
  var currentQuestion = 0;
 
 function callQuestion (currentQuestion){
-  document.getElementById("headline").textContent = questions1[currentQuestion];
-  document.getElementsByClassName("button1").textContent = possibleAnswers1[currentQuestion][0];
-  document.getElementsByClassName("button2").textContent = possibleAnswers1[currentQuestion][1];
-  document.getElementsByClassName("button3").textContent = possibleAnswers1[currentQuestion][2];
-  document.getElementsByClassName("button4").textContent = possibleAnswers1[currentQuestion][3];
+  var hTag = document.createElement("h1");
+  hTag.textContent = questions1[currentQuestion];
+  hTag.setAttribute("class", "headline")
+  document.body.appendChild(hTag);
+  hTag.setAttribute("style", "width:80%")
+  
+  for (i=0; i < possibleAnswers1[currentQuestion].length; i++) {
+  var divTag = document.createElement("div");
+  var buttonTag = document.createElement("button");
+  buttonTag.textContent = possibleAnswers1[currentQuestion][i];
+  buttonTag.setAttribute("class", "button-style")
+  document.body.appendChild(divTag);
+  divTag.appendChild(buttonTag);
+}
+
+  // document.getElementById("headline").textContent = questions1[currentQuestion];
+  document.getElementsByClassName(".button1").textContent = possibleAnswers1[currentQuestion][0];
+  document.getElementsByClassName(".button2").textContent = possibleAnswers1[currentQuestion][1];
+  document.getElementsByClassName(".button3").textContent = possibleAnswers1[currentQuestion][2];
+  document.getElementsByClassName(".button4").textContent = possibleAnswers1[currentQuestion][3];
 
 } //end function callQuestion
-callQuestion(currentQuestion)
+// callQuestion(currentQuestion)
 
 var firstButton = document.querySelector(".button1");
 var secondButton = document.querySelector(".button2");
@@ -68,13 +83,14 @@ var forthButton = document.querySelector(".button4");
 
 firstButton.addEventListener("click",enterAnswer);
 secondButton.addEventListener("click",enterAnswer);
-thirdButton.addEventListener("click",clickThree);
-forthButton.addEventListener("click",clickFour);
+thirdButton.addEventListener("click",enterAnswer);
+forthButton.addEventListener("click",enterAnswer);
 
 console.log(currentQuestion + " " + correctAnswers1);
 
-function enterAnswer(event) {console.log(event.currentTarget);}
-enterAnswer()
+function enterAnswer(event) {console.log(event.currentTarget);
+ console.log (possibleAnswers1[currentQuestion][0]);}
+// enterAnswer()
 
 function clickOne() {value1 = 0;
   if (correctAnswers1[currentQuestion] === value1) {
