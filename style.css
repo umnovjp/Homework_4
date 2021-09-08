@@ -90,16 +90,16 @@
     
   } /* I use*/
 
-  .button-incorrect:hover {
+    .button-incorrect:hover {
     font-size: 16px;
     cursor: pointer;
     background-color: lightblue;
     color: white;
     left: 10%;
     
-  } /* I use*/
+  } /* I use*/ 
 
-  .container {
+  /* .container {
     display: block;
     margin: 60px auto;
     text-align: center;
@@ -108,13 +108,15 @@
     width: 60vw;
     background-color: #f0ead6;
   }
-  .class{width: 20%}
+  .class{width: 20%} */ 
   
-  answer {
+  .answer {
     display: flex;
     justify-content: space-between;
     margin-top: 16px;
     font-style: italic;
+    margin-left: 10%;
+    color: grey;
   }
   
   .headline p {
