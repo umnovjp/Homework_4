@@ -59,26 +59,26 @@ function callQuestion (currentQuestion){
   
   for (i=0; i < possibleAnswers1[currentQuestion].length; i++) {
   var divTag = document.createElement("div");
+  var buttonId = "button".concat(i);
+  console.log(buttonId)
   var buttonTag = document.createElement("button");
   buttonTag.textContent = possibleAnswers1[currentQuestion][i];
   buttonTag.setAttribute("class", "button-style")
+  buttonTag.setAttribute("id", buttonId)
   document.body.appendChild(divTag);
   divTag.appendChild(buttonTag);
 }
 
   // document.getElementById("headline").textContent = questions1[currentQuestion];
-  document.getElementsByClassName(".button1").textContent = possibleAnswers1[currentQuestion][0];
+ // document.getElementsById(".button1").textContent = possibleAnswers1[currentQuestion][0];
   document.getElementsByClassName(".button2").textContent = possibleAnswers1[currentQuestion][1];
   document.getElementsByClassName(".button3").textContent = possibleAnswers1[currentQuestion][2];
   document.getElementsByClassName(".button4").textContent = possibleAnswers1[currentQuestion][3];
 
-} //end function callQuestion
-// callQuestion(currentQuestion)
-
-var firstButton = document.querySelector(".button1");
-var secondButton = document.querySelector(".button2");
-var thirdButton = document.querySelector(".button3");
-var forthButton = document.querySelector(".button4");
+var firstButton = document.querySelector("#button0");
+var secondButton = document.querySelector("#button1");
+var thirdButton = document.querySelector("#button2");
+var forthButton = document.querySelector("#button3");
 // I am sure there is way not to define four different functions here. But it seems faster for me
 
 firstButton.addEventListener("click",enterAnswer);
@@ -86,13 +86,16 @@ secondButton.addEventListener("click",enterAnswer);
 thirdButton.addEventListener("click",enterAnswer);
 forthButton.addEventListener("click",enterAnswer);
 
-console.log(currentQuestion + " " + correctAnswers1);
+console.log(currentQuestion + " " + correctAnswers1 + " " + buttonId);
+} //end function callQuestion
+// callQuestion(currentQuestion)
 
 function enterAnswer(event) {console.log(event.currentTarget);
  console.log (possibleAnswers1[currentQuestion][0]);}
 // enterAnswer()
 
 function clickOne() {value1 = 0;
+  console.log
   if (correctAnswers1[currentQuestion] === value1) {
   document.getElementById("answer").textContent = "Correct!"}
   else {document.getElementById("answer").textContent = "Wrong!"
