@@ -94,10 +94,10 @@ function enterAnswer(event) {console.log(event.currentTarget);
   tempArray = event.currentTarget.textContent.split(".");
   tempValue = tempArray[0] - 1;
   console.log (tempValue + " " + currentQuestion + " " + correctAnswers1[currentQuestion]);
-  var answerTag = document.createElement("p");
     var lineBreak = document.createElement("HR");
     document.body.appendChild(lineBreak); 
-    lineBreak.setAttribute("style", "color = black")
+    lineBreak.setAttribute("style", "color: black")
+  var answerTag = document.createElement("p");    
   answerTag.setAttribute("class", "answer");
   document.body.appendChild(answerTag);
   if (correctAnswers1[currentQuestion] == tempValue) {
