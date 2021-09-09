@@ -48,7 +48,7 @@ correctAnswers1 = [2, 3, 3, 3, 2]
 var numberOfQuestions = questions1.length;
 var numberOfAnswers = possibleAnswers1[0].length; 
  console.log(numberOfAnswers + ", " + numberOfQuestions + ", " + correctAnswers1)
- var currentQuestion = 0;
+ var currentQuestion = 1;
 
 function callQuestion (currentQuestion){
   var hTag = document.createElement("h1");
@@ -67,13 +67,7 @@ function callQuestion (currentQuestion){
   buttonTag.setAttribute("id", buttonId) 
   document.body.appendChild(divTag);
   divTag.appendChild(buttonTag);
-}
-
-  // document.getElementById("headline").textContent = questions1[currentQuestion];
- // document.getElementsById(".button1").textContent = possibleAnswers1[currentQuestion][0];
-  // document.getElementsByClassName(".button2").textContent = possibleAnswers1[currentQuestion][1];
-  // document.getElementsByClassName(".button3").textContent = possibleAnswers1[currentQuestion][2];
-  // document.getElementsByClassName(".button4").textContent = possibleAnswers1[currentQuestion][3];
+} // end for loop
 
 var firstButton = document.querySelector("#button0");
 var secondButton = document.querySelector("#button1");
@@ -87,7 +81,7 @@ thirdButton.addEventListener("click",enterAnswer);
 forthButton.addEventListener("click",enterAnswer);
 
 console.log(currentQuestion + " " + correctAnswers1 + " " + buttonId);
-} //end function callQuestion
+
 // callQuestion(currentQuestion)
 
 function enterAnswer(event) {console.log(event.currentTarget);
@@ -96,7 +90,7 @@ function enterAnswer(event) {console.log(event.currentTarget);
   console.log (tempValue + " " + currentQuestion + " " + correctAnswers1[currentQuestion]);
     var lineBreak = document.createElement("HR");
     document.body.appendChild(lineBreak); 
-    lineBreak.setAttribute("style", "color: black")
+    lineBreak.setAttribute("style", "background-color: grey; width: 75%; height: 2px; margin-left: 10%")
   var answerTag = document.createElement("p");    
   answerTag.setAttribute("class", "answer");
   document.body.appendChild(answerTag);
@@ -105,8 +99,12 @@ function enterAnswer(event) {console.log(event.currentTarget);
   else {answerTag.textContent = "Wrong!"
   secondsLeft = secondsLeft - 5}
   if (currentQuestion === 5) {currentQuestion = 4};
-};
-// end enterAnswer()
+} //end function callQuestion
+}; // end enterAnswer()
+
+// while (currentQuestion < 5) {
+callQuestion(currentQuestion);
+// currentQuestion++;}
 
 function clickOne() {value1 = 0;
   console.log
@@ -120,48 +118,6 @@ callQuestion(currentQuestion)
 if (currentQuestion === 5) {currentQuestion = 4};
 // console.log(currentQuestion + " " + correctAnswers1);
 }; // end function ClickOne
-
-function clickTwo() {value1 = 1;
-  if (correctAnswers1[currentQuestion] === value1) {
-  document.getElementById("answer").textContent = "Correct!"}
-  else {document.getElementById("answer").textContent = "Wrong!"
-  secondsLeft = secondsLeft - 5}
-  console.log(currentQuestion + " " + " " + correctAnswers1[currentQuestion] + " " + correctAnswers1 );
-   callQuestion(currentQuestion)
-   // currentQuestion++;
-   if (currentQuestion === 5) {currentQuestion = 4};
-  //  console.log(currentQuestion + " " + correctAnswers1);
-}; // end function ClickTwo
-
-function clickThree() {value1 = 2;
-  if (correctAnswers1[currentQuestion] === value1) {
-  document.getElementById("answer").textContent = "Correct!"}
-  else {document.getElementById("answer").textContent = "Wrong!"
-  secondsLeft = secondsLeft - 5}
-  console.log(currentQuestion + " " + " " + correctAnswers1[currentQuestion] + " " + correctAnswers1 );
-  callQuestion(currentQuestion)
- //  currentQuestion++;
-  if (currentQuestion === 5) {currentQuestion = 4};
-}; // end function ClickThree
-
-function clickFour() {value1 = 3;
-  if (correctAnswers1[currentQuestion] === value1) {
-//  console.log(correctAnswers1 + " x " + " y ");
-  document.getElementById("answer").textContent = "Correct!"}
-  else {document.getElementById("answer").textContent = "Wrong!"
-  secondsLeft = secondsLeft - 5}
-  console.log(currentQuestion + " " + " " + correctAnswers1[currentQuestion] + " " + correctAnswers1 );
-  callQuestion(currentQuestion);
-  // currentQuestion++;
-  if (currentQuestion === 5) {currentQuestion = 4};
-  // console.log(currentQuestion + " " + correctAnswers1);
-}; // end function ClickFour
-
-if  (correctAnswers1[currentQuestion] === 0){clickOne()}
-else if (correctAnswers1[currentQuestion] === 1){clickTwo()}
-else if (correctAnswers1[currentQuestion] === 2){clickThree()}
-else if (correctAnswers1[currentQuestion] === 3){clickFour()}
-else {document.getElementById("answer").textContent = "Something went rong!"}
 
 var submitInitialsButton = document.querySelector("#initialsButton");
 // submitInitialsButton.addEventListener("click", function() {allDone();});
@@ -181,5 +137,3 @@ function showResponse(event) {
   submissionResponseEl.textContent = response;
 }
   
-// Add listener to submit element
-// submitEl.addEventListener("click", showResponse);
