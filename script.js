@@ -5,15 +5,15 @@ var secondsLeft = 60;
 
 function setTime() {
   // Sets interval in variable
-  var timerInterval = setInterval(function() {
+  var timerInterval = setInterval(function () {
     secondsLeft--;
     timeEl.textContent = secondsLeft + " seconds left";
 
-    if(secondsLeft === 0) {
+    if (secondsLeft === 0) {
       // Stops execution of action at set interval
       clearInterval(timerInterval);
       // Calls function to create and append image
-     // sendMessage();
+      // sendMessage();
     }
 
   }, 1000);
@@ -37,94 +37,109 @@ setTime();
 // ["Button17", "Button18", "Button19", "Button20"], correctAnswer: "Button19"}, //end of question 5
 // ]
 
-questions1 = ["The condition in an if / else is enclosed within ___.", "String values must be enclosed within ___.", 
-"Arrays in JavaScript can be used to store", "A very useful tool used for development and debugging", 
-"Commonly used data types do not include:"]
-possibleAnswers1 = [["1. Quotes", "2. Curly Brackets", "3. Parentheses", "4. Square Brackets"], ["1. Commas", "2. Curly Brackets", "3. Quotes", "4. Parenthesis"], 
-["1. Numbers and strings", "2. Other arrays", "3. Booleans", "4. All of the above"], ["1. JavaScript", "2. Bash", "3. For loop", "4. Console.log"], 
+questions1 = ["The condition in an if / else is enclosed within ___.", "String values must be enclosed within ___.",
+  "Arrays in JavaScript can be used to store", "A very useful tool used for development and debugging",
+  "Commonly used data types do not include:"]
+possibleAnswers1 = [["1. Quotes", "2. Curly Brackets", "3. Parentheses", "4. Square Brackets"], ["1. Commas", "2. Curly Brackets", "3. Quotes", "4. Parenthesis"],
+["1. Numbers and strings", "2. Other arrays", "3. Booleans", "4. All of the above"], ["1. JavaScript", "2. Bash", "3. For loop", "4. Console.log"],
 ["1. Strings", "2. Booleans", "3. Alerts", "4. Numbers"]]
 correctAnswers1 = [2, 3, 3, 3, 2]
 
 var numberOfQuestions = questions1.length;
-var numberOfAnswers = possibleAnswers1[0].length; 
- console.log(numberOfAnswers + ", " + numberOfQuestions + ", " + correctAnswers1)
- var currentQuestion = 0;
+var numberOfAnswers = possibleAnswers1[0].length;
+console.log(numberOfAnswers + ", " + numberOfQuestions + ", " + correctAnswers1)
+var currentQuestion = -1;
 
-function callQuestion (currentQuestion){
+function callQuestion() {
+  currentQuestion++;
+  document.getElementById('question').innerHTML = "";
   var hTag = document.createElement("h1");
   hTag.textContent = questions1[currentQuestion];
   hTag.setAttribute("class", "headline")
-  document.body.appendChild(hTag);
+  document.getElementById('question').appendChild(hTag);
   hTag.setAttribute("style", "width:80%")
-  
-  for (i=0; i < possibleAnswers1[currentQuestion].length; i++) {
-  var divTag = document.createElement("div");
-  var buttonId = "button".concat(i);
+
+  for (i = 0; i < possibleAnswers1[currentQuestion].length; i++) {
+    var divTag = document.createElement("div");
+    var buttonId = "button".concat(i);
     // console.log(buttonId)
-  var buttonTag = document.createElement("button");
-  buttonTag.textContent = possibleAnswers1[currentQuestion][i];
-  buttonTag.setAttribute("class", "button-style")
-  buttonTag.setAttribute("id", buttonId) 
-  document.body.appendChild(divTag);
-  divTag.appendChild(buttonTag);
-} // end for loop
+    var buttonTag = document.createElement("button");
+    buttonTag.textContent = possibleAnswers1[currentQuestion][i];
+    buttonTag.setAttribute("class", "button-style")
+    buttonTag.setAttribute("id", buttonId)
+    document.getElementById('question').appendChild(divTag);
+    divTag.appendChild(buttonTag);
+  } // end for loop
 
-var firstButton = document.querySelector("#button0");
-var secondButton = document.querySelector("#button1");
-var thirdButton = document.querySelector("#button2");
-var forthButton = document.querySelector("#button3");
-// I am sure there is way not to define four different functions here. But it seems faster for me
+  var firstButton = document.querySelector("#button0");
+  var secondButton = document.querySelector("#button1");
+  var thirdButton = document.querySelector("#button2");
+  var forthButton = document.querySelector("#button3");
+  // I am sure there is way not to define four different functions here. But it seems faster for me
 
-firstButton.addEventListener("click",enterAnswer);
-secondButton.addEventListener("click",enterAnswer);
-thirdButton.addEventListener("click",enterAnswer);
-forthButton.addEventListener("click",enterAnswer);
+  firstButton.addEventListener("click", enterAnswer);
+  secondButton.addEventListener("click", enterAnswer);
+  thirdButton.addEventListener("click", enterAnswer);
+  forthButton.addEventListener("click", enterAnswer);
 
-console.log(currentQuestion + " " + correctAnswers1 + " " + buttonId);
+  console.log(currentQuestion + " " + correctAnswers1 + " " + buttonId);
 
-// callQuestion(currentQuestion)
+  // callQuestion(currentQuestion)
 
-function enterAnswer(event) {console.log(event.currentTarget);
-  tempArray = event.currentTarget.textContent.split(".");
-  tempValue = tempArray[0] - 1;
-  console.log (tempValue + " " + currentQuestion + " " + correctAnswers1[currentQuestion]);
+  function enterAnswer(event) {
+    console.log(event.currentTarget);
+    tempArray = event.currentTarget.textContent.split(".");
+    tempValue = tempArray[0] - 1;
+    console.log(tempValue + " " + currentQuestion + " " + correctAnswers1[currentQuestion]);
     var lineBreak = document.createElement("HR");
-    document.body.appendChild(lineBreak); 
+    document.getElementById('question').appendChild(lineBreak);
     lineBreak.setAttribute("style", "background-color: grey; width: 75%; height: 2px; margin-left: 10%")
-  var answerTag = document.createElement("p");    
-  answerTag.setAttribute("class", "answer");
-  document.body.appendChild(answerTag);
-  if (correctAnswers1[currentQuestion] == tempValue) {
-  answerTag.textContent = "Correct!"}
-  else {answerTag.textContent = "Wrong!"
-  secondsLeft = secondsLeft - 5}
-  if (currentQuestion === 5) {currentQuestion = 4};
-} //end function callQuestion
+    var answerTag = document.createElement("p");
+    answerTag.setAttribute("class", "answer");
+    document.getElementById('question').appendChild(answerTag);
+    if (correctAnswers1[currentQuestion] == tempValue) {
+      answerTag.textContent = "Correct!"
+    }
+    else {
+      
+      answerTag.textContent = "Wrong!"
+      secondsLeft = secondsLeft - 5
+    }
+    if (currentQuestion === 5) { currentQuestion = 4 };
+    setTimeout(callQuestion, 2000)
+    // callQuestion();
+   // currentQuestion++;
+  } //end function callQuestion
 }; // end enterAnswer()
-
+callQuestion();
 // while (currentQuestion < 5) {
-callQuestion(currentQuestion);
+
 // currentQuestion++;}
 
-function clickOne() {value1 = 0;
+function clickOne() {
+  value1 = 0;
   console.log
   if (correctAnswers1[currentQuestion] === value1) {
-  document.getElementById("answer").textContent = "Correct!"}
-  else {document.getElementById("answer").textContent = "Wrong!"
-secondsLeft = secondsLeft - 5}
-console.log(currentQuestion + " " + " " + correctAnswers1[currentQuestion] + " " + correctAnswers1 );
-callQuestion(currentQuestion)
-// currentQuestion++;
-if (currentQuestion === 5) {currentQuestion = 4};
-// console.log(currentQuestion + " " + correctAnswers1);
+    document.getElementById("answer").textContent = "Correct!"
+  }
+  else {
+    document.getElementById("answer").textContent = "Wrong!"
+    secondsLeft = secondsLeft - 5
+  }
+  console.log(currentQuestion + " " + " " + correctAnswers1[currentQuestion] + " " + correctAnswers1);
+  callQuestion(currentQuestion)
+  // currentQuestion++;
+  if (currentQuestion === 5) { currentQuestion = 4 };
+  // console.log(currentQuestion + " " + correctAnswers1);
 }; // end function ClickOne
 
 var submitInitialsButton = document.querySelector("#initialsButton");
 // submitInitialsButton.addEventListener("click", function() {allDone();});
 
-function allDone (){document.getElementById("headline").textContent = "All done!";
-document.getElementById("list1").textContent = "Your final score is"
-document.getElementById("list2").textContent = "<button>Submit</button>"
+function allDone() {
+  document.getElementById("headline").textContent = "All done!";
+  document.getElementById("list1").textContent = "Your final score is"
+  document.getElementById("list2").textContent = "<button>Submit</button>"
 }
 // allDone()
 
@@ -136,4 +151,4 @@ function showResponse(event) {
   var response = "Thank you for your submission " + nameInput.value + "! We will reach out to you at " + emailInput.value + ".";
   submissionResponseEl.textContent = response;
 }
-  
+
