@@ -48,7 +48,7 @@ correctAnswers1 = [2, 3, 3, 3, 2]
 var numberOfQuestions = questions1.length;
 var numberOfAnswers = possibleAnswers1[0].length; 
  console.log(numberOfAnswers + ", " + numberOfQuestions + ", " + correctAnswers1)
- var currentQuestion = 1;
+ var currentQuestion = 0;
 
 function callQuestion (currentQuestion){
   var hTag = document.createElement("h1");
