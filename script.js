@@ -1,5 +1,5 @@
 var timeEl = document.querySelector(".half");
-var mainEl = document.getElementById(".half");
+// var mainEl = document.getElementById(".half");
 
 var secondsLeft = 60;
 
@@ -39,15 +39,19 @@ setTime();
 
 questions1 = ["The condition in an if / else is enclosed within ___.", "String values must be enclosed within ___.",
   "Arrays in JavaScript can be used to store", "A very useful tool used for development and debugging",
-  "Commonly used data types do not include:"]
+  "Commonly used data types do not include:", "All Done!", "High Scores"]
 possibleAnswers1 = [["1. Quotes", "2. Curly Brackets", "3. Parentheses", "4. Square Brackets"], ["1. Commas", "2. Curly Brackets", "3. Quotes", "4. Parenthesis"],
 ["1. Numbers and strings", "2. Other arrays", "3. Booleans", "4. All of the above"], ["1. JavaScript", "2. Bash", "3. For loop", "4. Console.log"],
 ["1. Strings", "2. Booleans", "3. Alerts", "4. Numbers"]]
-correctAnswers1 = [2, 3, 3, 3, 2]
+correctAnswers1 = [2, 3, 3, 3, 2, 0]
 
 var numberOfQuestions = questions1.length;
 var numberOfAnswers = possibleAnswers1[0].length;
 console.log(numberOfAnswers + ", " + numberOfQuestions + ", " + correctAnswers1)
+
+// quizTheMorningAfter = ["All Done!", "High Scores"];
+listItems = ["Your final score is", "Enter Initials: "];
+
 var currentQuestion = -1;
 
 function callQuestion() {
@@ -58,8 +62,11 @@ function callQuestion() {
   hTag.setAttribute("class", "headline")
   document.getElementById('question').appendChild(hTag);
   hTag.setAttribute("style", "width:80%")
+  console.log(currentQuestion)
 
-  for (i = 0; i < possibleAnswers1[currentQuestion].length; i++) {
+ if (currentQuestion < 5) {
+    // for (i = 0; i < 4; i++) {
+    for (i = 0; i < possibleAnswers1[currentQuestion].length; i++) {
     var divTag = document.createElement("div");
     var buttonId = "button".concat(i);
     // console.log(buttonId)
@@ -69,13 +76,13 @@ function callQuestion() {
     buttonTag.setAttribute("id", buttonId)
     document.getElementById('question').appendChild(divTag);
     divTag.appendChild(buttonTag);
-  } // end for loop
+  }; // end for loop
+
 
   var firstButton = document.querySelector("#button0");
   var secondButton = document.querySelector("#button1");
   var thirdButton = document.querySelector("#button2");
   var forthButton = document.querySelector("#button3");
-  // I am sure there is way not to define four different functions here. But it seems faster for me
 
   firstButton.addEventListener("click", enterAnswer);
   secondButton.addEventListener("click", enterAnswer);
@@ -83,8 +90,6 @@ function callQuestion() {
   forthButton.addEventListener("click", enterAnswer);
 
   console.log(currentQuestion + " " + correctAnswers1 + " " + buttonId);
-
-  // callQuestion(currentQuestion)
 
   function enterAnswer(event) {
     console.log(event.currentTarget);
@@ -101,47 +106,36 @@ function callQuestion() {
       answerTag.textContent = "Correct!"
     }
     else {
-      
       answerTag.textContent = "Wrong!"
       secondsLeft = secondsLeft - 5
     }
-    if (currentQuestion === 5) { currentQuestion = 4 };
-    setTimeout(callQuestion, 2000)
-    // callQuestion();
-   // currentQuestion++;
-  } //end function callQuestion
-}; // end enterAnswer()
+    
+    setTimeout(callQuestion, 1000)
+  }; //end function enterAnswer
+}; // end if currentQuestion < 5 statement
+  if (currentQuestion === 5) {
+  var pTag0 = document.createElement("p");
+  pTag0.textContent = listItems[0]  + ' ' + secondsLeft;
+  pTag0.setAttribute("class", "list1");
+  document.getElementById('question').appendChild(pTag0);
+  var pTag1 = document.createElement("p");
+  pTag1.textContent = listItems[1];
+  pTag1.setAttribute("class", "list1")
+  pTag1.setAttribute("id", "parTag1")
+  document.getElementById('question').appendChild(pTag1);
+  var input1 = document.createElement("input");
+  input1.setAttribute("id", "input")
+  document.getElementById('parTag1').appendChild(input1);
+  var submitButton = document.createElement("button");
+  submitButton.setAttribute("class", "button-style");
+  submitButton.setAttribute("id", "submit");
+  submitButton.setAttribute("style", "left: 2%");
+  submitButton.textContent = "Submit";
+  document.getElementById('parTag1').appendChild(submitButton);
+}; // end if currentQuestion === 5 
+} // end callQuestion
+
 callQuestion();
-// while (currentQuestion < 5) {
-
-// currentQuestion++;}
-
-function clickOne() {
-  value1 = 0;
-  console.log
-  if (correctAnswers1[currentQuestion] === value1) {
-    document.getElementById("answer").textContent = "Correct!"
-  }
-  else {
-    document.getElementById("answer").textContent = "Wrong!"
-    secondsLeft = secondsLeft - 5
-  }
-  console.log(currentQuestion + " " + " " + correctAnswers1[currentQuestion] + " " + correctAnswers1);
-  callQuestion(currentQuestion)
-  // currentQuestion++;
-  if (currentQuestion === 5) { currentQuestion = 4 };
-  // console.log(currentQuestion + " " + correctAnswers1);
-}; // end function ClickOne
-
-var submitInitialsButton = document.querySelector("#initialsButton");
-// submitInitialsButton.addEventListener("click", function() {allDone();});
-
-function allDone() {
-  document.getElementById("headline").textContent = "All done!";
-  document.getElementById("list1").textContent = "Your final score is"
-  document.getElementById("list2").textContent = "<button>Submit</button>"
-}
-// allDone()
 
 // Action to be performed on click store in named function
 function showResponse(event) {
