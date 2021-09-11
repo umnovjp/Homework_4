@@ -36,7 +36,7 @@
   
   
   .headline {
-    font-size: 25px;
+    font-size: 30px;
     height: 60px;
     line-height: 30px;
     margin-top: 10px;
@@ -44,7 +44,7 @@
   } /* I use */
 
   .list1 {
-    font-size: 16px;
+    font-size: 24px;
     position: relative; 
    /* margin-left: 25%; */
     left: 9%;
@@ -56,7 +56,7 @@
   } /* I use */
   
   .button-style {
-    font-size: 16px;
+    font-size: 18px;
     /* I know changing cursor is not required I just tried */ 
     cursor: pointer;
     background-color: purple;
@@ -69,7 +69,7 @@
   } /* I use*/
 
   .button-style:hover {
-    font-size: 16px;
+    font-size: 18px;
     cursor: pointer;
     background-color: lightblue;
     color: white;
@@ -78,9 +78,9 @@
     border-radius: 5px;
   } /* I use*/
 
-  .button-incorrect {
-    font-size: 16px;
-    /* I know changing cursor is not required I just tried */ 
+  /*.button-incorrect {
+    font-size: 18px;
+    /* I know changing cursor is not required I just tried 
     cursor: pointer;
     background-color: blue;
     color: white;
@@ -88,10 +88,10 @@
     left: 10%;
     flex-wrap: wrap-reverse;
     
-  } /* I use*/
+  } I use*/
 
-    .button-incorrect:hover {
-    font-size: 16px;
+    /* .button-incorrect:hover {
+    font-size: 20px;
     cursor: pointer;
     background-color: lightblue;
     color: white;

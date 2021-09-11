@@ -43,7 +43,7 @@ questions1 = ["Coding Quiz Challenge", "The condition in an if / else is enclose
 possibleAnswers1 = [["1. Quotes", "2. Curly Brackets", "3. Parentheses", "4. Square Brackets"], ["1. Commas", "2. Curly Brackets", "3. Quotes", "4. Parenthesis"],
 ["1. Numbers and strings", "2. Other arrays", "3. Booleans", "4. All of the above"], ["1. JavaScript", "2. Bash", "3. For loop", "4. Console.log"],
 ["1. Strings", "2. Booleans", "3. Alerts", "4. Numbers"]]
-correctAnswers1 = [2, 3, 3, 3, 2, 0]
+correctAnswers1 = [0, 2, 3, 3, 3, 2, 0]
 
 var startContent = "Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score time by ten seconds!";
 var numberOfQuestions = questions1.length;
@@ -79,24 +79,25 @@ function callQuestion() {
     startButton.textContent = "Start Quiz";
     document.getElementById('question').appendChild(startButton);
 
-  }; // end if
+ 
 
   var startButton = document.querySelector(".button-style"); // for some reason querySelector("#submit") did not work
   startButton.addEventListener("click", startQuiz);
 
   function startQuiz (event) {
-    console.log(event.currentTarget + " " + currentQuestion);
-    currentQuestion++;
-  }
+   // console.log(event.currentTarget + " " + currentQuestion);
+    callQuestion();
+  };
+}; // end if
 
- if (currentQuestion < 5 && currentQuestion > 0) {
+ if (currentQuestion < 6 && currentQuestion > 0) {
     // for (i = 0; i < 4; i++) {
-    for (i = 0; i < possibleAnswers1[currentQuestion].length; i++) {
+    for (i = 0; i < possibleAnswers1[0].length; i++) {
     var divTag = document.createElement("div");
     var buttonId = "button".concat(i);
     // console.log(buttonId)
     var buttonTag = document.createElement("button");
-    buttonTag.textContent = possibleAnswers1[currentQuestion][i];
+    buttonTag.textContent = possibleAnswers1[currentQuestion-1][i];
     buttonTag.setAttribute("class", "button-style")
     buttonTag.setAttribute("id", buttonId)
     document.getElementById('question').appendChild(divTag);
@@ -120,13 +121,14 @@ function callQuestion() {
     console.log(event.currentTarget);
     tempArray = event.currentTarget.textContent.split(".");
     tempValue = tempArray[0] - 1;
-    console.log(tempValue + " " + currentQuestion + " " + correctAnswers1[currentQuestion]);
+    //console.log(tempValue + " " + currentQuestion + " " + );
     var lineBreak = document.createElement("HR");
     document.getElementById('question').appendChild(lineBreak);
     lineBreak.setAttribute("style", "background-color: grey; width: 75%; height: 2px; margin-left: 10%")
     var answerTag = document.createElement("p");
     answerTag.setAttribute("class", "answer");
     document.getElementById('question').appendChild(answerTag);
+    console.log("current inside loop" + currentQuestion + "tempValue " + tempValue + "correct Answer" + correctAnswers1[currentQuestion])
     if (correctAnswers1[currentQuestion] == tempValue) {
       answerTag.textContent = "Correct!"
     }
@@ -135,10 +137,10 @@ function callQuestion() {
       secondsLeft = secondsLeft - 10;
     }
     
-    setTimeout(callQuestion, 1000)
+    setTimeout(callQuestion, 800)
   }; //end function enterAnswer
 }; // end if currentQuestion < 5 statement
-  if (currentQuestion === 5) {
+  if (currentQuestion === 6) {
   var pTag0 = document.createElement("p");
   pTag0.textContent = listItems[0]  + ' ' + secondsLeft;
   pTag0.setAttribute("class", "list1");
