@@ -37,7 +37,7 @@ setTime();
 // ["Button17", "Button18", "Button19", "Button20"], correctAnswer: "Button19"}, //end of question 5
 // ]
 
-questions1 = ["Coding Quiz Challenge", "The condition in an if / else is enclosed within ___.", "String values must be enclosed within ___.",
+questions1 = ["The condition in an if / else is enclosed within ___.", "String values must be enclosed within ___.",
   "Arrays in JavaScript can be used to store", "A very useful tool used for development and debugging",
   "Commonly used data types do not include:", "All Done!", "High Scores"]
 possibleAnswers1 = [["1. Quotes", "2. Curly Brackets", "3. Parentheses", "4. Square Brackets"], ["1. Commas", "2. Curly Brackets", "3. Quotes", "4. Parenthesis"],
@@ -45,12 +45,11 @@ possibleAnswers1 = [["1. Quotes", "2. Curly Brackets", "3. Parentheses", "4. Squ
 ["1. Strings", "2. Booleans", "3. Alerts", "4. Numbers"]]
 correctAnswers1 = [2, 3, 3, 3, 2, 0]
 
-var startContent = "Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score time by ten seconds!";
 var numberOfQuestions = questions1.length;
 var numberOfAnswers = possibleAnswers1[0].length;
 console.log(numberOfAnswers + ", " + numberOfQuestions + ", " + correctAnswers1)
 
-// quizTheMorningAfter = ["All Done!", ];
+// quizTheMorningAfter = ["All Done!", "High Scores"];
 listItems = ["Your final score is", "Enter Initials: "];
 
 var currentQuestion = -1;
@@ -64,32 +63,8 @@ function callQuestion() {
   document.getElementById('question').appendChild(hTag);
   hTag.setAttribute("style", "width:80%")
   console.log(currentQuestion)
-  
-  if(currentQuestion === 0) { 
-    hTag.setAttribute("style", "text-align: center");
-    var pTag0 = document.createElement("p");
-    pTag0.textContent = startContent; 
-    pTag0.setAttribute("class", "list1");
-    pTag0.setAttribute("style", "text-align: center");
-    document.getElementById('question').appendChild(pTag0);
-    var startButton = document.createElement("button");
-    startButton.setAttribute("class", "button-style");
-    startButton.setAttribute("id", "submit");
-    startButton.setAttribute("style", "left: 50%");
-    startButton.textContent = "Start Quiz";
-    document.getElementById('question').appendChild(startButton);
 
-  }; // end if
-
-  var startButton = document.querySelector(".button-style"); // for some reason querySelector("#submit") did not work
-  startButton.addEventListener("click", startQuiz);
-
-  function startQuiz (event) {
-    console.log(event.currentTarget + " " + currentQuestion);
-    currentQuestion++;
-  }
-
- if (currentQuestion < 5 && currentQuestion > 0) {
+ if (currentQuestion < 5) {
     // for (i = 0; i < 4; i++) {
     for (i = 0; i < possibleAnswers1[currentQuestion].length; i++) {
     var divTag = document.createElement("div");
@@ -132,7 +107,7 @@ function callQuestion() {
     }
     else {
       answerTag.textContent = "Wrong!"
-      secondsLeft = secondsLeft - 10;
+      secondsLeft = secondsLeft - 5
     }
     
     setTimeout(callQuestion, 1000)
@@ -170,4 +145,3 @@ function showResponse(event) {
   var response = "Thank you for your submission " + nameInput.value + "! We will reach out to you at " + emailInput.value + ".";
   submissionResponseEl.textContent = response;
 }
-
