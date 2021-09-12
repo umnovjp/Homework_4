@@ -146,7 +146,7 @@ function callQuestion() {
   pTag1.setAttribute("id", "parTag1")
   document.getElementById('question').appendChild(pTag1);
   var input1 = document.createElement("input");
-  input1.setAttribute("id", "input")
+  input1.setAttribute("class", "input")
   document.getElementById('parTag1').appendChild(input1);
   var submitButton = document.createElement("button");
   submitButton.setAttribute("class", "button-style");
@@ -156,21 +156,47 @@ function callQuestion() {
   document.getElementById('parTag1').appendChild(submitButton);
 }; // end if currentQuestion === 6 
 
+    var enterInitials = document.querySelector(".input");
+    var elements = [enterInitials];
+    input1.addEventListener('keydown', function(event) {
+   // console.log(event.currentTarget + " " + currentQuestion);
+   var key = event.key.toUpperCase();
+   var alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
+   if (alphabet.includes(key)) {for (var i = 0; i < elements.length; i++) {elements[i].textContent += event.key;
+    console.log(elements.textContent);}
+   }
+  });
+
+
+
   var submitButton = document.querySelector(".button-style"); // for some reason querySelector("#submit") did not work
   submitButton.addEventListener("click", enterScore);
 
   function enterScore (event) {
-   // console.log(event.currentTarget + " " + currentQuestion);
-    currentQuestion--;
-    callQuestion();
-  };
+     currentQuestion--;
+     if (currentQuestion === 6) {currentQuestion ++};
+     callQuestion();
+   };
 
-var enterInitials = document.querySelector("#input");
-localStorage.setItem("initials", initials);
+// var typeface;
 
-var initials = localStorage.getItem("initials");
-enterInitials.textContent = initials;
-submitButton.addEventListener("click",initials);
+// Keydown event
+// textAreaEl.addEventListener('keydown', function (event) {
+  // Access value of pressed key with key property
+
+//});
+
+
+    // document.getElementById('tempo').appendChild(h1El);
+  
+  var inputAreaEl = document.querySelector('.input');
+
+ // var enterInitials = document.querySelector("#input");
+// localStorage.setItem("initials", initials);
+
+// var initials = localStorage.getItem("initials");
+// enterInitials.textContent = initials;
+// submitButton.addEventListener("click",initials);
 // var enterInitials = localStorage.getItem("initials");
 // callQuestion++;
  
@@ -196,4 +222,3 @@ function showResponse(event) {
   var response = "Thank you for your submission " + nameInput.value + "! We will reach out to you at " + emailInput.value + ".";
   submissionResponseEl.textContent = response;
 }
-
