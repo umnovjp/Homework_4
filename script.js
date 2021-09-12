@@ -7,13 +7,11 @@ function setTime() {
   // Sets interval in variable
   var timerInterval = setInterval(function () {
     secondsLeft--;
-    timeEl.textContent = secondsLeft + " seconds left";
+    timeEl.textContent = "Time: " + secondsLeft;
 
     if (secondsLeft === 0) {
       // Stops execution of action at set interval
       clearInterval(timerInterval);
-      // Calls function to create and append image
-      // sendMessage();
     }
 
   }, 1000);
@@ -63,7 +61,7 @@ function callQuestion() {
   hTag.setAttribute("class", "headline")
   document.getElementById('question').appendChild(hTag);
   hTag.setAttribute("style", "width:80%")
-  console.log(currentQuestion)
+  console.log(currentQuestion + " headline")
   
   if(currentQuestion === 0) { 
     hTag.setAttribute("style", "text-align: center");
@@ -79,9 +77,7 @@ function callQuestion() {
     startButton.textContent = "Start Quiz";
     document.getElementById('question').appendChild(startButton);
 
- 
-
-  var startButton = document.querySelector(".button-style"); // for some reason querySelector("#submit") did not work
+    var startButton = document.querySelector(".button-style"); // for some reason querySelector("#submit") did not work
   startButton.addEventListener("click", startQuiz);
 
   function startQuiz (event) {
@@ -104,7 +100,6 @@ function callQuestion() {
     divTag.appendChild(buttonTag);
   }; // end for loop
 
-
   var firstButton = document.querySelector("#button0");
   var secondButton = document.querySelector("#button1");
   var thirdButton = document.querySelector("#button2");
@@ -115,7 +110,7 @@ function callQuestion() {
   thirdButton.addEventListener("click", enterAnswer);
   forthButton.addEventListener("click", enterAnswer);
 
-  console.log(currentQuestion + " " + correctAnswers1 + " " + buttonId);
+  console.log(currentQuestion + " " + correctAnswers1 + " " + buttonId + "before enterAnswer");
 
   function enterAnswer(event) {
     console.log(event.currentTarget);
@@ -128,7 +123,7 @@ function callQuestion() {
     var answerTag = document.createElement("p");
     answerTag.setAttribute("class", "answer");
     document.getElementById('question').appendChild(answerTag);
-    console.log("current inside loop" + currentQuestion + "tempValue " + tempValue + "correct Answer" + correctAnswers1[currentQuestion])
+   // console.log("current inside loop" + currentQuestion + "tempValue " + tempValue + "correct Answer" + correctAnswers1[currentQuestion])
     if (correctAnswers1[currentQuestion] == tempValue) {
       answerTag.textContent = "Correct!"
     }
@@ -159,10 +154,39 @@ function callQuestion() {
   submitButton.setAttribute("style", "left: 2%");
   submitButton.textContent = "Submit";
   document.getElementById('parTag1').appendChild(submitButton);
-}; // end if currentQuestion === 5 
+}; // end if currentQuestion === 6 
+
+  var submitButton = document.querySelector(".button-style"); // for some reason querySelector("#submit") did not work
+  submitButton.addEventListener("click", enterScore);
+
+  function enterScore (event) {
+   // console.log(event.currentTarget + " " + currentQuestion);
+    currentQuestion--;
+    callQuestion();
+  };
+
+var enterInitials = document.querySelector("#input");
+localStorage.setItem("initials", initials);
+
+var initials = localStorage.getItem("initials");
+enterInitials.textContent = initials;
+submitButton.addEventListener("click",initials);
+// var enterInitials = localStorage.getItem("initials");
+// callQuestion++;
+ 
 } // end callQuestion
 
 callQuestion();
+
+// function lastSlide (current) {
+ // currentQuestion === 7;
+// if (currentQuestion === 7) {
+ // var list2 = document.createElement("li");
+//  list2.textContent = "Score";
+//  document.getElementById('question').appendChild(list2);
+ // }; // end if currentQuestion === 7
+// }
+// lastSlide() //
 
 // Action to be performed on click store in named function
 function showResponse(event) {
