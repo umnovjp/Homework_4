@@ -133,7 +133,7 @@ function callQuestion() {
       secondsLeft = secondsLeft - 10;
     }
     
-    setTimeout(callQuestion, 800)
+    setTimeout(callQuestion, 700)
   }; //end function enterAnswer
 }; // end if currentQuestion < 5 statement
 secondsLeft1 = secondsLeft - 1
@@ -190,6 +190,10 @@ currentQuestion === 8;
      if (currentQuestion === 6) {currentQuestion++};
      clearInterval();
      callQuestion();
+     var hTag = document.createElement("h1");
+  hTag.textContent = questions1[7];
+  hTag.setAttribute("class", "headline")
+  document.getElementById('question').appendChild(hTag);
      
    };
 
