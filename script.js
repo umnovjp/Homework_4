@@ -13,6 +13,7 @@ function setTime() {
       // Stops execution of action at set interval
       clearInterval(timerInterval);
     }
+    if (currentQuestion === 6) {clearInterval(timerInterval)}
 
   }, 1000);
 }
@@ -135,9 +136,10 @@ function callQuestion() {
     setTimeout(callQuestion, 800)
   }; //end function enterAnswer
 }; // end if currentQuestion < 5 statement
+secondsLeft1 = secondsLeft - 1
   if (currentQuestion === 6) {
   var pTag0 = document.createElement("p");
-  pTag0.textContent = listItems[0]  + ' ' + secondsLeft;
+  pTag0.textContent = listItems[0]  + ' ' + secondsLeft1;
   pTag0.setAttribute("class", "list1");
   document.getElementById('question').appendChild(pTag0);
   var pTag1 = document.createElement("p");
@@ -154,19 +156,30 @@ function callQuestion() {
   submitButton.setAttribute("style", "left: 2%");
   submitButton.textContent = "Submit";
   document.getElementById('parTag1').appendChild(submitButton);
+
+  var enterInitials = document.querySelector(".input");
+  // var arrayOfInitials = [] 
+  var elements = [];
+  input1.addEventListener('keydown', function(event) {
+ // console.log(event.currentTarget + " " + currentQuestion);
+ var key1 = event.key.toUpperCase();
+ var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+ // input1.textContent.append(key);
+ if (alphabet.includes(key1)) {elements.textContent += event.key;
+ // elements.append(key1);
+ initials = elements.textContent.substring(9)
+  console.log(elements.textContent + " " + typeof(elements.textContent) + " " + initials + " " + secondsLeft);}
+  
+  // arrayOfInitials.push(initials);
+  // arrayOfInitials.splice(arrayOfInitials.length-1, arrayOfInitials.length-1)
+  // console.log(arrayOfInitials)
+ });
+currentQuestion === 8;
+
 }; // end if currentQuestion === 6 
 
-    var enterInitials = document.querySelector(".input");
-    var elements = [enterInitials];
-    input1.addEventListener('keydown', function(event) {
-   // console.log(event.currentTarget + " " + currentQuestion);
-   var key = event.key.toUpperCase();
-   var alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
-   if (alphabet.includes(key)) {for (var i = 0; i < elements.length; i++) {elements[i].textContent += event.key;
-    console.log(elements.textContent);}
-   }
-  });
-
+   
+  
 
 
   var submitButton = document.querySelector(".button-style"); // for some reason querySelector("#submit") did not work
@@ -174,8 +187,10 @@ function callQuestion() {
 
   function enterScore (event) {
      currentQuestion--;
-     if (currentQuestion === 6) {currentQuestion ++};
+     if (currentQuestion === 6) {currentQuestion++};
+     clearInterval();
      callQuestion();
+     
    };
 
 // var typeface;
