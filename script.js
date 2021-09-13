@@ -38,7 +38,7 @@ setTime();
 
 questions1 = ["Coding Quiz Challenge", "The condition in an if / else is enclosed within ___.", "String values must be enclosed within ___.",
   "Arrays in JavaScript can be used to store", "A very useful tool used for development and debugging",
-  "Commonly used data types do not include:", "All Done!", "High Scores"]
+  "Commonly used data types do not include:", "All Done!", "Highscores"]
 possibleAnswers1 = [["1. Quotes", "2. Curly Brackets", "3. Parentheses", "4. Square Brackets"], ["1. Commas", "2. Curly Brackets", "3. Quotes", "4. Parenthesis"],
 ["1. Numbers and strings", "2. Other arrays", "3. Booleans", "4. All of the above"], ["1. JavaScript", "2. Bash", "3. For loop", "4. Console.log"],
 ["1. Strings", "2. Booleans", "3. Alerts", "4. Numbers"]]
@@ -47,7 +47,8 @@ correctAnswers1 = [0, 2, 3, 3, 3, 2, 0]
 var startContent = "Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score time by ten seconds!";
 var numberOfQuestions = questions1.length;
 var numberOfAnswers = possibleAnswers1[0].length;
-console.log(numberOfAnswers + ", " + numberOfQuestions + ", " + correctAnswers1)
+console.log(numberOfAnswers + ", " + numberOfQuestions + ", " + correctAnswers1);
+var initials;
 
 // quizTheMorningAfter = ["All Done!", ];
 listItems = ["Your final score is", "Enter Initials: "];
@@ -89,10 +90,22 @@ function callQuestion() {
 
  if (currentQuestion < 6 && currentQuestion > 0) {
     // for (i = 0; i < 4; i++) {
+      
+      // console.log(buttonId)
+      if (currentQuestion === 1) { 
+        var timerTag = document.createElement("span");
+        timerTag.textContent = 'Time: ' + secondsLeft1;
+        timerTag.setAttribute("class", "timerr")
+        // buttonTag.setAttribute("id", buttonId)
+        document.getElementById('leftSpan').appendChild(timerTag); }
+
     for (i = 0; i < possibleAnswers1[0].length; i++) {
+
+      
+
+      var buttonId = "button".concat(i);
     var divTag = document.createElement("div");
-    var buttonId = "button".concat(i);
-    // console.log(buttonId)
+    
     var buttonTag = document.createElement("button");
     buttonTag.textContent = possibleAnswers1[currentQuestion-1][i];
     buttonTag.setAttribute("class", "button-style")
@@ -136,7 +149,7 @@ function callQuestion() {
     setTimeout(callQuestion, 700)
   }; //end function enterAnswer
 }; // end if currentQuestion < 5 statement
-secondsLeft1 = secondsLeft - 1
+secondsLeft1 = secondsLeft
   if (currentQuestion === 6) {
   var pTag0 = document.createElement("p");
   pTag0.textContent = listItems[0]  + ' ' + secondsLeft1;
@@ -166,7 +179,7 @@ secondsLeft1 = secondsLeft - 1
  var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
  // input1.textContent.append(key);
  if (alphabet.includes(key1)) {elements.textContent += event.key;
- // elements.append(key1);
+ 
  initials = elements.textContent.substring(9)
   console.log(elements.textContent + " " + typeof(elements.textContent) + " " + initials + " " + secondsLeft);}
   
@@ -175,27 +188,57 @@ secondsLeft1 = secondsLeft - 1
   // console.log(arrayOfInitials)
  });
 currentQuestion === 8;
+console.log(initials + "inside")
+var submitButton = document.querySelector(".button-style"); // for some reason querySelector("#submit") did not work
+submitButton.addEventListener("click", enterScore);
+
+function enterScore (event) {
+  console.log(currentQuestion + " enterScore") ;
+  if (currentQuestion === 6) {currentQuestion = 8};
+  currentQuestion--;
+   document.getElementById('question').innerHTML = "";
+   
+   clearInterval();
+   callQuestion();
+   var hTag = document.createElement("h1");
+hTag.textContent = questions1[7];
+hTag.setAttribute("class", "headline")
+document.getElementById('question').appendChild(hTag);
+pTag0.textContent = '1. ' + initials + ' - ' + secondsLeft1;
+pTag0.setAttribute("class", "list2")
+document.getElementById('question').appendChild(pTag0);
+var pTag1 = document.createElement("p");
+pTag1.textContent = '';
+pTag1.setAttribute("class", "list1")
+pTag1.setAttribute("id", "parTag1")
+pTag1.setAttribute("style", "left: 7%")
+document.getElementById('question').appendChild(pTag1);
+
+var submitButton = document.createElement("button");
+submitButton.setAttribute("class", "button-style");
+submitButton.setAttribute("id", "submit");
+submitButton.setAttribute("style", "left: 2%");
+submitButton.textContent = "Clear Highscores";
+document.getElementById('parTag1').appendChild(submitButton);
+
+var submitButton = document.createElement("button");
+submitButton.setAttribute("class", "button-style");
+submitButton.setAttribute("id", "submit");
+submitButton.setAttribute("style", "left: 2%");
+submitButton.textContent = "Go Back";
+document.getElementById('parTag1').appendChild(submitButton);
+submitButton.addEventListener("click", reload1); 
+function reload1(event) {location.reload()};  
+
+ };
 
 }; // end if currentQuestion === 6 
 
-   
+
   
 
 
-  var submitButton = document.querySelector(".button-style"); // for some reason querySelector("#submit") did not work
-  submitButton.addEventListener("click", enterScore);
-
-  function enterScore (event) {
-     currentQuestion--;
-     if (currentQuestion === 6) {currentQuestion++};
-     clearInterval();
-     callQuestion();
-     var hTag = document.createElement("h1");
-  hTag.textContent = questions1[7];
-  hTag.setAttribute("class", "headline")
-  document.getElementById('question').appendChild(hTag);
-     
-   };
+ 
 
 // var typeface;
 
